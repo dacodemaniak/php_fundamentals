@@ -8,14 +8,39 @@
 
 // Définit les données utilisateurs... (Modèle)
 $users = [
-    "Jean-Luc",
-    "Vincent",
-    "Pascal",
-    "Julien",
-    "Sonya"
+    [
+        "firstname"=> "Jean-Luc",
+        "lastname"=> "Aubert",
+        "email"=> "jean-luc.a@ideafactory.fr",
+        "username" => "dacodemaniak"
+    ],
+    [
+        "firstname"=> "Vincent",
+        "lastname"=> "Dubois",
+        "email"=> "v100@gmail.com",
+        "username" => "v100"
+    ],
+    [
+        "firstname"=> "Pascal",
+        "lastname"=> "Blaise",
+        "email"=> "bp@bp.fr",
+        "username" => "calculette"
+    ],
+    [
+        "firstname"=> "Julien",
+        "lastname"=> "Durand",
+        "email"=> "j.durant@hotmail.fr",
+        "username" => "jd"
+    ],
+    [
+        "firstname"=> "Sonya",
+        "lastname"=> "Sun",
+        "email"=> "sun@summer.me",
+        "username" => "Donna"
+    ]
 ];
 
-$singleUser = ""; // Détail d'un utilisateur
+$singleUser = []; // Détail d'un utilisateur
 
 if (empty($_GET)) {
     include("./../views/users.view.php"); // Affiche le tableau de tous les utilisateurs
