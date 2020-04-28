@@ -3,14 +3,8 @@
 * @name register.php
 * @author Adrar - Apr. 2020
 * @version 1.0.0
-*   Register form view
+*   Register form processing - Controller
 */
-
-function getSessionValues($fields) {
-    foreach ($_SESSION["formContent"] as $key => $value) {
-        $fields[$key]["value"] = $value;
-    }
-}
 
 session_start();
 
@@ -53,16 +47,22 @@ $fields = [
     ]
 ];
 
-if (array_key_exists("formContent", $_SESSION)) {
-    // Some values were stored, so, push it in $fields var
-    getSessionValues($fields);
-}
-
-if (!empty($_POST)) {
+// Processing
+if (!empty($_POST)) { // L'utilisateur a-t-il cliqué sur le bouton S'inscrire ?
     $isFormValid = true;
     // Let's check the form values
+    
+    /**
+     * Occ. 1 =>
+     * $field => lastname / $contraints : ["required" => true, "value" => ""]
+     * Occ. 4 =>
+     * $field => email_confirm / $constraints : ["required" => true, "value" => "", "must_match" => "email"]
+     */
     foreach($fields as $field => $constraints) {
+        // Keep entered value
         $fields[$field]["value"] = $_POST[$field];
+        
+        // Constraints checking
         if ($constraints["required"]) {
             if (trim($_POST[$field]) === "") {
                 $fields[$field]["error"] = "Ce champ est obligatoire !";
@@ -78,7 +78,15 @@ if (!empty($_POST)) {
             }
         }
     }
+    // Then load view...
+    if (!$isFormValid) {
+        include("./../views/register.view.php");
+    } else {
+        // What have we to do here ?
+    }
+} else {
+  // Load the default view
+  include("./../views/register.view.php");  
 }
 
-// Then load view...
-include("./../views/register.view.php");
+
