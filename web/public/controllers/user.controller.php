@@ -3,8 +3,13 @@
 * @name user.controller.php
 * @author Adrar - Apr. 2020
 * @version 1.0.0
-*   Contrôle l'affichage de la vue utilisateur
+*   Contrôle l'affichage de la vue utilisateur (request processing)
 */
+
+/**
+ * Charger la définition des classes
+ */
+require_once("./../models/User.php");
 
 // Définit les données utilisateurs... (Modèle)
 $users = [
@@ -41,6 +46,19 @@ $users = [
 ];
 
 $singleUser = []; // Détail d'un utilisateur
+
+
+// Créer un objet à partir d'une classe
+$oUsers = [];
+foreach ($users as $user) {
+    $oUser = new User();
+    $oUser->lastname = $user["lastname"];
+    $oUser->firstname = $user["firstname"];
+    $oUser->email = $user["email"];
+    $oUser->username = $user["username"];
+    
+    $oUsers[] = $oUser;
+}
 
 if (empty($_GET)) {
     include("./../views/users.view.php"); // Affiche le tableau de tous les utilisateurs

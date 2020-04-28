@@ -13,6 +13,18 @@
 	</head>
 	
 	<body>
-		<h1>Détails utilisateur : <?php echo $singleUser;?></h1>
+		<h1>Détails utilisateur</h1>
+		
+		<?php
+		echo "<ul>\n";
+		foreach ($singleUser as $value) {
+		    echo "\t<li>" . $value . "</li>\n";
+		}
+		echo "</ul>\n";
+		?>
+		
+		<a href="<?php echo $_SERVER["PHP_SELF"]; ?>" title="Retour à la liste des utilisateurs">
+			Retour
+		</a>
 	</body>
 </html>

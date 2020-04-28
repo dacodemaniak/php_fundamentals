@@ -3,6 +3,7 @@
 * @name user.view
 * @author Adrar - Apr. 2020
 * @version 1.0.0
+* Response processing
 */
 ?>
 <!doctype html>
@@ -13,23 +14,36 @@
 	</head>
 	
 	<body>
+		<?php echo "Nom : " . $oUser->lastname; ?>
+		
 		<table class="table table-condensed">
 			<thead>
 				<tr>
-					<th>Utilisateur</th>
+					<th>Nom</th>
+					<th>Nickname</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<?php for($i=0; $i < count($users); $i++) {?>
+				<!-- Affiche l'objet $oUser -->
+				
+				<?php 
+				$i = 0;
+				foreach($oUsers as $user) {?>
 					<tr>
 						<td>
+							<?php echo $user->getName(); ?>
+						</td>
+						<td>
 							<a href="<?php echo $_SERVER["PHP_SELF"]?>?id=<?php echo $i;?>" title="Voir le détail">
-								<?php echo $users[$i] . " [" . $_SERVER["PHP_SELF"] . "?" . $i . "]";?>
+								<?php echo $user->username; ?>
 							</a>
 						</td>
 					</tr>
-				<?php }?>
+				<?php 
+				    $i++; 
+				}
+				?>
 			</tbody>
 		</table>
 	</body>
