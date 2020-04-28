@@ -36,7 +36,7 @@ if (array_key_exists("error", $_GET)) {
 				Connexion
 			</button>
 			<a href="forgot_password.php">Mot de passe oublié ?</a>
-			<a href="register.php">S'inscrire</a>
+			<a href="./controllers/register.php">S'inscrire</a>
 		</form>
 		<?php 
 		if (strlen($error)) {
