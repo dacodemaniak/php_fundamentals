@@ -3,7 +3,7 @@
  * 
  * @author Adrar - Apr. 2020
  * @version 1.0.0
- *
+ *  Concrete MySQL Connection Class
  */
 class MySQL {
     private $username;
