@@ -14,8 +14,6 @@
 	</head>
 	
 	<body>
-		<?php echo "Nom : " . $oUser->lastname; ?>
-		
 		<table class="table table-condensed">
 			<thead>
 				<tr>

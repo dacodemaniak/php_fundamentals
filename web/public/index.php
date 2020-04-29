@@ -5,6 +5,9 @@
  * @version 1.0.0
  * 	Illustrate some basics of PHP
  */
+
+require_once("./Core/DBAL/MySQL.php");
+
 session_start();
 
 if (array_key_exists("id", $_SESSION)) {
@@ -17,6 +20,15 @@ if (array_key_exists("error", $_GET)) {
     $error = "Veuillez remplir le formulaire correctement !";
 }
 
+// Instancier la classe MySQL
+$db = new MySQL();
+$db
+    ->setDbName("myproject-repo")
+    ->setUsername("root")
+    ->setPassword("root")
+    ->setHost("172.21.0.2");
+// Try to connect
+$db->connect();
 ?>
 
 <!doctype html>
