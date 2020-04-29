@@ -7,6 +7,8 @@
  */
 
 require_once("./Core/DBAL/MySQL.php");
+require_once("./models/User.php");
+require_once("./Repositories/UserRepository.php");
 
 session_start();
 
@@ -20,15 +22,18 @@ if (array_key_exists("error", $_GET)) {
     $error = "Veuillez remplir le formulaire correctement !";
 }
 
-// Instancier la classe MySQL
-$db = new MySQL();
-$db
-    ->setDbName("myproject-repo")
-    ->setUsername("root")
-    ->setPassword("root")
-    ->setHost("172.21.0.2");
-// Try to connect
-$db->connect();
+
+
+$user = new User();
+$user->lastname = "Talut";
+$user->firstname = "Jean";
+$user->email = "roues@jantes.com";
+$user->username = "tuning";
+$user->password = "gninut";
+
+$repository = new UserRepository($user);
+$repository->create();
+
 ?>
 
 <!doctype html>

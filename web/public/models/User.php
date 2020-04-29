@@ -1,7 +1,9 @@
 <?php
 
+//
+// INSERT INTO user (lastname, firstname, email, password, username) VALUES ('','','','','');
 class User {
-    public $id;
+    private $id;
     public $lastname;
     public $firstname;
     public $email;

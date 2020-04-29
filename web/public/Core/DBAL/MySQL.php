@@ -17,6 +17,8 @@ class MySQL {
     
     private $dbType = 'mysql';
     
+    private $handler;
+    
     /**
      * @param mixed $dbName
      */
@@ -39,6 +41,7 @@ class MySQL {
         return $this;
     }
     
+    
     public function setHost(string $host): self {
         $this->host = $host;
         
@@ -49,12 +52,16 @@ class MySQL {
         $dsn = $this->dbType . ":host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->dbName;
         
         try {
-            $handler = new \PDO($dsn, $this->username, $this->password);
+            $this->handler = new \PDO($dsn, $this->username, $this->password);
             echo "Bienvenue dans la base MySQL";
         } catch(\PDOException $e) {
             echo "Error connecting to db : " . $e->getMessage();
             die();
         }
+    }
+    
+    public function getHandler(): \PDO {
+        return $this->handler;
     }
     
 }
