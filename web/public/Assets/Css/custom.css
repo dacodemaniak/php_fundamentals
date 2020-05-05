@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.tiles .tile {
+	border: solid 1px #000;
+	background-color: rgba(128, 128, 128, .7);
+}

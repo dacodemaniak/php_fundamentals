@@ -52,10 +52,10 @@ foreach ($tasks as $task) {
 $htmlContent = "<div class=\"tiles\">"; // <div class="tiles">
 // Loop over tasks
 foreach ($tasks as $task) {
-    $htmlContent .= "<div class=\"tile\">"; // Début de la div qui va contenir toute la tâche
+    $htmlContent .= "<div class=\"row tile\">"; // Début de la div qui va contenir toute la tâche
     
     // La zone pour le titre et la date de création
-    $htmlContent .= "<div class=\"tile-title-date\">";
+    $htmlContent .= "<div class=\"col-sm-5 tile-title-date\">";
     $htmlContent .= "<h2>" . $task["libelle"] . "</h2>";
     $htmlContent .= "<span class=\"tile-title-date-date\">";
     $htmlContent .= $friendlyTitles["dateCreation"] . " : " . $task["dateCreation"];
@@ -63,7 +63,7 @@ foreach ($tasks as $task) {
     $htmlContent .= "</div>";
     
     // Zone pour les dates de début et de fin
-    $htmlContent .= "<div class=\"tile-title-begin-end\">";
+    $htmlContent .= "<div class=\"col-sm-7 tile-title-begin-end\">";
     $htmlContent .= "<span class=\"tile-title-begin-end-begin\">";
     $htmlContent .= $friendlyTitles["dateDebut"] . " : " . $task["dateDebut"];
     $htmlContent .= "</span>";
@@ -77,12 +77,5 @@ foreach ($tasks as $task) {
 
 $htmlContent .= "</div>";
 
-// Envoyer le résultat final vers le client
-// Générer un vrai document HTML
-$html = StaticHTML::startHTML("Liste des tâches");
-$html .= $htmlContent;
-$html .=  StaticHTML::endHTML();
-
-// Envoyer les en-têtes Apache (i.e Output content to the client)
-header("Content-Type: text/html", false, 200);
-echo $html;
+StaticHTML::addCssFile("custom");
+StaticHTML::display("Liste des tâches", $htmlContent);
