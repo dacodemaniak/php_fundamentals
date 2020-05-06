@@ -10,14 +10,23 @@ require_once(__DIR__ . "/../models/User.php");
 
 class UserRepository {
     private $user;
+    private $scheme = [];
     
-    public function __construct(User $user) {
+    public function __construct() {}
+    
+    public function persist(User $user) {
         $this->user = $user;
+        $this->scheme = $this->user->getScheme();
+        if ($this->scheme["id"] === null) {
+            $this->create();
+        } else {
+            $this->update();
+        }
     }
     
-    public function create() {
+    private function create() {
         $sql = "INSERT INTO user (";
-        foreach ($this->user as $property => $value) {
+        foreach ($this->scheme as $property => $value) {
             $sql .= $property . ",";
         }
         
@@ -26,7 +35,7 @@ class UserRepository {
         
         $sql .= " ) VALUES (";
         
-        foreach ($this->user as $property => $value) {
+        foreach ($this->scheme as $property => $value) {
             $sql .= ":" .$property . ",";
         }
         
@@ -39,30 +48,38 @@ class UserRepository {
         // Map values to placeholders
         $mapping = [];
         
-        foreach ($this->user as $property => $value) {
+        foreach ($this->scheme as $property => $value) {
             $mapping[$property] = $value;
         }
         
         // Préparer la requête... et l'envoyer au serveur
         // Instancier la classe MySQL
+        
         $db = new MySQL();
         $db
-            ->setDbName("myproject-repo")
+            ->setDbName("test")
             ->setUsername("root")
             ->setPassword("root")
-            ->setHost("172.21.0.2");
-            // Try to connect
-            $db->connect();
+            ->setHost("172.21.0.4");
+        // Try to connect
+        $db->connect();
             
-        $statement = $db->getHandler()->prepare($sql);
-        $statement->execute($mapping);
-    }
-    
-    public function update() {
+        $statement = $db->getHandler()->prepare($sql); 
+        if (!$statement->execute($mapping)) {
+            echo "Erreur dans la requête préparée : " . $sql . "<br>";
+            var_dump($mapping);
+            echo $statement->errorInfo();
+        }
+        
+
         
     }
     
-    public function delete() {
+    private function update() {
+        
+    }
+    
+    public function delete(User $user) {
         // DELETE FROM user WHERE id = :id;    
     }
     

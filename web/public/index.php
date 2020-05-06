@@ -25,14 +25,17 @@ if (array_key_exists("error", $_GET)) {
 
 
 $user = new User();
-$user->lastname = "Talut";
-$user->firstname = "Jean";
-$user->email = "roues@jantes.com";
-$user->username = "tuning";
-$user->password = "gninut";
 
-$repository = new UserRepository($user);
-$repository->create();
+$user
+    ->setLastname("Talut")
+    ->setFirstname("Jean")
+    ->setEmail("roues@jantes.com")
+    ->setUsername("tuning")
+    ->setPassword("gninut");
+
+$repository = new UserRepository();
+$repository->persist($user);
+
 
 ?>
 
