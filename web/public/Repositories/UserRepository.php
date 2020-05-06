@@ -11,8 +11,11 @@ require_once(__DIR__ . "/../models/User.php");
 class UserRepository {
     private $user;
     private $scheme = [];
+    private $tableName;
     
-    public function __construct() {}
+    public function __construct() {
+        $this->tableName = strtolower(User::class);
+    }
     
     public function persist(User $user) {
         $this->user = $user;
@@ -25,7 +28,7 @@ class UserRepository {
     }
     
     private function create() {
-        $sql = "INSERT INTO user (";
+        $sql = "INSERT INTO " . $this->tableName . " (";
         foreach ($this->scheme as $property => $value) {
             $sql .= $property . ",";
         }
