@@ -1,5 +1,5 @@
 <?php
-class Shape {
+abstract class Shape {
     /**
      * 
      * @var float $width
@@ -31,20 +31,23 @@ class Shape {
     /**
      * @param number $width
      */
-    public function setWidth(float $width)
+    public function setWidth(float $width): Shape
     {
         $this->width = $width;
+        
+        return $this;
     }
 
     /**
      * @param number $height
      */
-    public function setHeight(float $height)
+    public function setHeight(float $height): Shape
     {
         $this->height = $height;
+        return $this;
     }
 
-    
+    abstract public function decoupe(): string;
     
 }
 
