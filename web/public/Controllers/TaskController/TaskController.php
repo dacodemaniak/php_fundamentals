@@ -24,5 +24,11 @@ class TaskController {
         $taskRepository = new TaskRepository();
         
         $this->modelData = $taskRepository->findAll();
+        
+        // Transmettre le modèle à la vue...
+        $modelData = $this->modelData; // Définit la variable utilisée dans la vue
+        
+        // Envoyer la vue vers le navigateur
+        include(__DIR__ . "/Views/task.view.php");
     }
 }

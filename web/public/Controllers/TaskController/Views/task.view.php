@@ -1,0 +1,34 @@
+<?php
+/**
+* @name task.view
+* @author Adrar - May 2020
+* @version 1.0.0
+*   Présentation de la liste des tâches
+*/
+?>
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		
+		<title>Liste des tâches</title>
+		
+	</head>
+	
+	<body>
+		<div class="container-fluid">
+			<ul>
+				<?php 
+				for ($indice = 0; $indice < count($modelData); $indice++) {?>
+					<li>
+						<a href="#" title="Détail">
+							<?php echo $modelData[$indice]["libelle"]; ?>
+						</a>
+						<span>Créée le :</span><?php echo $modelData[$indice]["dateCreation"];?>
+					</li>
+				<?php }?>
+			</ul>
+		</div>
+	</body>
+</html>
