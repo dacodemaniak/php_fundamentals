@@ -1,3 +1,9 @@
 /.buildpath
 /.project
 /NewFile.html
+
+# Exclude vendor directory
+vendor
+
+# Exclude smarty working dir
+smarty
