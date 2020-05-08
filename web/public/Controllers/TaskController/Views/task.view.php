@@ -20,12 +20,12 @@
 		<div class="container-fluid">
 			<ul>
 				<?php 
-				for ($indice = 0; $indice < count($modelData); $indice++) {?>
+				for ($indice = 0; $indice < count($datas->modelData); $indice++) {?>
 					<li>
 						<a href="<?php echo "?controller=OneTask&id=" . $indice; ?>" title="Détail">
-							<?php echo $modelData[$indice]["libelle"]; ?>
+							<?php echo $datas->modelData[$indice]["libelle"]; ?>
 						</a>
-						<span>Créée le :</span><?php echo $modelData[$indice]["dateCreation"];?>
+						<span>Créée le :</span><?php echo $datas->modelData[$indice]["dateCreation"];?>
 					</li>
 				<?php }?>
 			</ul>

@@ -21,9 +21,11 @@ class OneTaskController {
         
         $this->modelData = $taskRepository->findById($_GET["id"]);
         
-        var_dump($this->modelData);
         
         // Transmettre le modèle à la vue...
-        $modelData = $this->modelData; // Définit la variable utilisée dans la vue
+        $datas = $this; // Définit la variable utilisée dans la vue
+        
+        // Publier la vue
+        include(__DIR__ . "/Views/onetask.view.php");
     }
 }
