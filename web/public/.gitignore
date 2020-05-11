@@ -2,3 +2,6 @@
 /.project
 /vendor
 /smarty
+
+# Environement variables
+.env*
