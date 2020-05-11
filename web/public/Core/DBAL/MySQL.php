@@ -5,55 +5,14 @@
  * @version 1.0.0
  *  Concrete MySQL Connection Class
  */
+require_once(__DIR__ . "/DbConnect.php");
 
-class MySQL {
-    private $username;
-    private $password;
-    
-    private $dbName;
-    
-    private $host;
-    
-    private $port = 3306;
-    
-    private $dbType = 'mysql';
-    
-    private $handler;
+final class MySQL extends DbConnect {
+
     
     public function __construct() {
-        $this->username = $_ENV["USERNAME"];
-        $this->password = $_ENV["PASSWORD"];
-        $this->host = $_ENV["DB_HOST"];
-        $this->port = $_ENV["PORT"];
-        $this->dbName = $_ENV["DB_NAME"];
-    }
-    /**
-     * @param mixed $dbName
-     */
-    public function setDbName(string $dbName): self
-    {
-        $this->dbName = $dbName;
-        
-        return $this;
-    }
-
-    public function setUsername(string $username): self {
-        $this->username = $username;
-        
-        return $this;
-    }
-    
-    public function setPassword(string $password): self {
-        $this->password = $password;
-        
-        return $this;
-    }
-    
-    
-    public function setHost(string $host): self {
-        $this->host = $host;
-        
-        return $this;
+        parent::__construct(); // Appel explicite au constructeur parent
+        $this->dbType = "mysql";
     }
     
     public function connect() {
@@ -67,10 +26,5 @@ class MySQL {
             die();
         }
     }
-    
-    public function getHandler(): \PDO {
-        return $this->handler;
-    }
-    
 }
 
