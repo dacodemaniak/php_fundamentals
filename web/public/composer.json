@@ -1,0 +1,14 @@
+{
+    "name": "jlaubert/public",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^4.1"
+    },
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Jean-Luc Aubert",
+            "email": "jean-luc.a@ideafactory.fr"
+        }
+    ]
+}
