@@ -7,15 +7,13 @@
  */
 
 require_once("vendor/autoload.php");
-
-require_once("./Core/DBAL/MySQL.php");
-require_once("./models/User.php");
-require_once("./Repositories/UserRepository.php");
+require_once("Core/DBAL/MySQL.php");
 
 use Dotenv\Dotenv;
-
 
 // Charger les variables d'environnement
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-var_dump($_ENV["DB_HOST"]);
+
+$db = new \MySQL();
+$db->connect();

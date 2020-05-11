@@ -5,6 +5,7 @@
  * @version 1.0.0
  *  Concrete MySQL Connection Class
  */
+
 class MySQL {
     private $username;
     private $password;
@@ -19,6 +20,13 @@ class MySQL {
     
     private $handler;
     
+    public function __construct() {
+        $this->username = $_ENV["USERNAME"];
+        $this->password = $_ENV["PASSWORD"];
+        $this->host = $_ENV["DB_HOST"];
+        $this->port = $_ENV["PORT"];
+        $this->dbName = $_ENV["DB_NAME"];
+    }
     /**
      * @param mixed $dbName
      */
