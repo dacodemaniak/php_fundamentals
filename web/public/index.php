@@ -7,7 +7,7 @@
  */
 
 require_once("vendor/autoload.php");
-require_once("Core/DBAL/MySQL.php");
+require_once("Core/DBAL/Connection.php");
 
 use Dotenv\Dotenv;
 
@@ -15,5 +15,14 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$db = new \MySQL();
-$db->connect();
+$db = Connection::getInstance();
+$db->getHandler();
+
+$db = Connection::getInstance();
+$db->getHandler();
+
+$db = Connection::getInstance();
+$db->getHandler();
+
+$db = Connection::getInstance();
+$db->getHandler();

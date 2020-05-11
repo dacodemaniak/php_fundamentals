@@ -13,10 +13,14 @@ final class PgSQL extends DbConnect {
     public function __construct() {
         parent::__construct(); // Appel explicite au constructeur parent
         $this->dbType = "pgsql";
+        
+        // Déclenche la méthode de connexion
+        
     }
     
-    public function connect() {
+    protected function connect() {
         echo "Bienvenue dans la base de données PostgreSQL !";
+        $this->handler = null;
     }
 }
 

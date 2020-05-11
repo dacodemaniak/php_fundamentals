@@ -26,7 +26,7 @@ abstract class DbConnect {
         $this->dbName = $_ENV["DB_NAME"];
     }
     
-    abstract public function connect();
+    abstract protected function connect();
     
     public function getHandler(): \PDO {
         return $this->handler;

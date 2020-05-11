@@ -13,9 +13,12 @@ final class MySQL extends DbConnect {
     public function __construct() {
         parent::__construct(); // Appel explicite au constructeur parent
         $this->dbType = "mysql";
+        
+        // Déclenche la méthode de connexion
+        $this->connect();
     }
     
-    public function connect() {
+    protected function connect() {
         $dsn = $this->dbType . ":host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->dbName;
         
         try {
