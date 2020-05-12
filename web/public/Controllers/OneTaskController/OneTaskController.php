@@ -8,24 +8,29 @@
  */
 
 require(__DIR__ . "/../../Models/TaskRepository.php");
+require(__DIR__ . "/../../Core/Controller/Controller.php");
 
-class OneTaskController {
-    /**
-     *  Données du modèle à transmettre à la vue (ou à utiliser dans la vue)
-     * @var array $modelData
-     */
-    public $modelData;
+class OneTaskController extends Controller {
     
     public function __construct() {
+        parent::__construct();
+        
         $taskRepository = new TaskRepository();
         
         $this->modelData = $taskRepository->findById($_GET["id"]);
         
-        
+    }
+    
+    /**
+     * @Override
+     * {@inheritDoc}
+     * @see Controller::render()
+     */
+    public function render() {
         // Transmettre le modèle à la vue...
         $datas = $this; // Définit la variable utilisée dans la vue
         
         // Publier la vue
-        include(__DIR__ . "/Views/onetask.view.php");
+        include(__DIR__ . $this->viewPath);
     }
 }

@@ -28,7 +28,7 @@
 					<p><span class="label">Au : </span><?php echo $datas->modelData["dateFin"]; ?></p>
 					
 					<blockquote>
-						<span class="label">Catégorie : </span><?php echo $datas->modelData["dateFin"]; ?>
+						<span class="label">Catégorie : </span><?php echo $datas->modelData["categorie"]; ?>
 					</blockquote>
 				</div>
 				

@@ -22,4 +22,5 @@ $className = $controllerName . "Controller";
 
 // Instancier la classe (Création de l'objet Contrôleur spécifié)
 $controller = new $className();
+$controller->render();
 

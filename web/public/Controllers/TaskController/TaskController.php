@@ -12,23 +12,29 @@
 
 // __DIR__ constantes PHP à l'exécution => Chemin complet vers le fichier courant (i.e TaskController.php)
 require(__DIR__ . "/../../Models/TaskRepository.php");
+require(__DIR__ . "/../../Core/Controller/Controller.php");
 
-class TaskController {
-    /**
-     *  Données du modèle à transmettre à la vue (ou à utiliser dans la vue)
-     * @var array $modelData
-     */
-    public $modelData;
+class TaskController extends Controller {
     
     public function __construct() { // PHP Magic Method __
+        parent::__construct(); // Explicitement appeler le constructeur de la classe parente
+        
         $taskRepository = new TaskRepository();
         
         $this->modelData = $taskRepository->findAll();
         
+    }
+    
+    /**
+     * @Override
+     * {@inheritDoc}
+     * @see Controller::render()
+     */
+    public function render() {
         // Transmettre le modèle à la vue...
         $datas = $this; // Définit la variable utilisée dans la vue
         
         // Envoyer la vue vers le navigateur
-        include(__DIR__ . "/Views/task.view.php");
+        include(__DIR__ . $this->viewPath);
     }
 }
