@@ -11,8 +11,8 @@
 */
 
 // __DIR__ constantes PHP à l'exécution => Chemin complet vers le fichier courant (i.e TaskController.php)
-require(__DIR__ . "/../../Models/TaskRepository.php");
-require(__DIR__ . "/../../Core/Controller/Controller.php");
+require_once(__DIR__ . "/../../Models/TaskRepository.php");
+require_once(__DIR__ . "/../../Core/Controller/Controller.php");
 
 class TaskController extends Controller {
     
@@ -34,7 +34,6 @@ class TaskController extends Controller {
         // Transmettre le modèle à la vue...
         $datas = $this; // Définit la variable utilisée dans la vue
         
-        // Envoyer la vue vers le navigateur
-        include(__DIR__ . $this->viewPath);
+        $this->strategy->render($this);
     }
 }
