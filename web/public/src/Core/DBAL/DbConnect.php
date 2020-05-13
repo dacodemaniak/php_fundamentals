@@ -1,4 +1,7 @@
 <?php
+
+namespace Adrar\Core\DBAL;
+
 use Dotenv\Dotenv;
 
 abstract class DbConnect {
@@ -16,7 +19,7 @@ abstract class DbConnect {
     protected $handler;
     
     public function __construct() {
-        $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+        $dotenv = Dotenv::createImmutable(__DIR__ . "/../../../");
         $dotenv->load();
         
         $this->username = $_ENV["DB_USER"];

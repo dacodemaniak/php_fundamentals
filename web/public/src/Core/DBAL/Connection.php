@@ -1,7 +1,13 @@
 <?php
-require_once(__DIR__ . "/DbConnect.php");
-require_once(__DIR__  . "/MySQL.php");
-require_once(__DIR__ . "/PgSQL.php");
+/**
+ * @name Connection
+ * @author Adrar May 2020
+ * @version 1.0.1
+ * @namespace Adrar\Core\DBAL
+ *  Singleton class that load RDBMS connection
+ */
+
+namespace Adrar\Core\DBAL; // PSR-4 : RootNameSpace\Folder\Folder
 
 use Dotenv\Dotenv;
 
@@ -13,7 +19,7 @@ class Connection {
     private function __construct() {
         echo "Constructeur privé de Connexion<br>";
         
-        $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+        $dotenv = Dotenv::createImmutable(__DIR__ . "/../../../");
         $dotenv->load();
         
         $driver = $_ENV["DB_DRIVER"];

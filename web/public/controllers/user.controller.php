@@ -9,7 +9,7 @@
 /**
  * Charger la définition des classes
  */
-require_once("./../models/User.php");
+require_once("./../Entities/User.php");
 
 // Définit les données utilisateurs... (Modèle)
 $users = [

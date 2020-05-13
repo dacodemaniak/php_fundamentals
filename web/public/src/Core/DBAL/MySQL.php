@@ -5,7 +5,10 @@
  * @version 1.0.0
  *  Concrete MySQL Connection Class
  */
-require_once(__DIR__ . "/DbConnect.php");
+namespace Adrar\Core\DBAL;
+
+use Adrar\Core\DBAL\DbConnect;
+
 
 final class MySQL extends DbConnect {
 

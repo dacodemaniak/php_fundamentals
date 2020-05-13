@@ -9,5 +9,10 @@
 			"name" : "Jean-Luc Aubert",
 			"email" : "jean-luc.a@ideafactory.fr"
 		}
-	]
+	],
+	"autoload": {
+		"psr-4": {
+			"Adrar\\": "src/"
+		}
+	}
 }

@@ -7,15 +7,16 @@
  */
 
 require_once("vendor/autoload.php");
-require_once("Core/DBAL/Connection.php");
+
 
 use Dotenv\Dotenv;
+use Adrar\Core\DBAL\Connection;
 
 // Charger les variables d'environnement
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$db = Connection::getInstance();
+$db = Adrar\Core\DBAL\Connection::getInstance();
 $db->getHandler();
 
 $db = Connection::getInstance();

@@ -5,7 +5,7 @@
 * @version 1.0.0
 *   Register form processing - Controller
 */
-require_once("./../models/User.php");
+require_once("./../Entities/User.php");
 
 session_start();
 
