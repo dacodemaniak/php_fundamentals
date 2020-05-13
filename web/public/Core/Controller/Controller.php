@@ -17,23 +17,27 @@ abstract class Controller {
      */
     protected $strategy;
     
-    /**
-     * Chemin vers la vue correspondant au contrôleur courant
-     * @var string $viewPath
-     */
-    protected $viewPath;
     
     public function __construct() {
-        $className = strtolower(substr(get_class($this), 0, strlen(get_class($this))-10));
         
         // Default : HTMLStrategy needed
         $this->strategy = new HTMLStrategy();
-        
-        $this->viewPath = "/Views/" . $className . ".view.php";
     }
     
     public function setStrategy(RenderInterface $strategy) {
         $this->strategy = $strategy;    
+    }
+    
+    public function __get(string $propertyName) {
+        return $this->{$propertyName};
+    }
+    
+    public function getViewPath(): string {
+        $className = strtolower(substr(get_class($this), 0, strlen(get_class($this))-10));
+        
+        $viewType = $this->strategy instanceof HTMLStrategy ? "view" : "json";
+        
+        return "/Views/" . $className . "." . $viewType . ".php";
     }
     
     abstract public function render();

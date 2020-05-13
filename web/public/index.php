@@ -22,8 +22,6 @@ $controllerFileName = "./Controllers/" . $controllerName . "Controller/" . $cont
 // Inclure la définition de la classe
 require_once($controllerFileName);
 
-echo "Contrôleur : " . $controllerName . "<br>";
-
 // Définir le nom de la classe
 $className = $controllerName . "Controller";
 

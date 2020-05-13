@@ -25,6 +25,11 @@ class TaskController extends Controller {
         
     }
     
+    
+    public function getViewPath(): string {
+        return __DIR__ . parent::getViewPath();    
+    }
+    
     /**
      * @Override
      * {@inheritDoc}
