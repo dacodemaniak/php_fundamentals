@@ -2,28 +2,47 @@
 /**
  * @name index.php
  * @author Adrar - Apr. 2020
- * @version 1.0.0
- * 	Illustrate some basics of PHP
+ * @version 1.0.1
+ * 	App entry point - Dispatch all requests
  */
 
 require_once("vendor/autoload.php");
 
 
-use Dotenv\Dotenv;
-use Adrar\Core\DBAL\Connection;
 
-// Charger les variables d'environnement
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// Instanciate a brand new router
+$router = new AltoRouter();
 
-$db = Adrar\Core\DBAL\Connection::getInstance();
-$db->getHandler();
+// Sets the routes
+$router->map(
+    "GET", // HTTP Verb,
+    "/user/login", // Route
+    "\\Adrar\\Controllers\\User\\UserController#login", // Contrôleur et une méthode
+    "user_login" // P'tit nom de la route
+);
+$router->map(
+    "GET", // HTTP Verb,
+    "/user/logout", // Route
+    "\\Adrar\\Controllers\\User\\UserController#logout", // Contrôleur et une méthode
+    "user_logout" // P'tit nom de la route
+);
 
-$db = Connection::getInstance();
-$db->getHandler();
+$match = $router->match();
 
-$db = Connection::getInstance();
-$db->getHandler();
+if ($match) {
+    $components = explode("#", $match["target"]); // ["Adrar\Controllers\User\UserController", "login"]
+    
+    $controllerClass = $components[0]; // Get the class of the controller to instanciate
+    
+    // We can instanciate the controller
+    $controller = new $controllerClass();
+    
+    // Invoke the method of the controller
+    $controller->{$components[1]}();
+} else {
+    die("No match found !");
+}
 
-$db = Connection::getInstance();
-$db->getHandler();
+
+
+
