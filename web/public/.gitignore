@@ -4,4 +4,7 @@
 /smarty
 
 # Environement variables
-.env*
+.env
+.env.dev
+.env.prod
+.env.test
