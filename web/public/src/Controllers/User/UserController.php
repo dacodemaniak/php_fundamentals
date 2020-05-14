@@ -21,5 +21,10 @@ class UserController {
         $template = __DIR__ . "/Views/logout.view.php";
         include($template);
     }
+    
+    public function register() {
+        $template = __DIR__ . "/Views/register.view.php";
+        include($template);
+    }
 }
 

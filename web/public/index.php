@@ -26,6 +26,12 @@ $router->map(
     "\\Adrar\\Controllers\\User\\UserController#logout", // Contrôleur et une méthode
     "user_logout" // P'tit nom de la route
 );
+$router->map(
+    "GET", // HTTP Verb,
+    "/user/register", // Route
+    "\\Adrar\\Controllers\\User\\UserController#register", // Contrôleur et une méthode
+    "user_register" // P'tit nom de la route
+    );
 
 $match = $router->match();
 
