@@ -18,6 +18,6 @@
 	<body>
 		<h1>Logout works !</h1>
 		
-		<a href="index.php?action=login">Login</a>
+		<a href="/user/login">Login</a>
 	</body>
 </html>

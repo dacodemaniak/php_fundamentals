@@ -9,6 +9,9 @@
 namespace Adrar\Controllers\User;
 
 class UserController {
+    /**
+     * @Route("get", "/user/login", "user_login")
+     */
     public function login() {
         $template = __DIR__ . "/Views/login.view.php";
         include($template);
