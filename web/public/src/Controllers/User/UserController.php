@@ -8,13 +8,19 @@
  */
 namespace Adrar\Controllers\User;
 
+
+use Adrar\Core\Http\HTMLResponse;
+
 class UserController {
-    /**
-     * @Route("get", "/user/login", "user_login")
-     */
+
+    
+    public function __construct() {}
+    
     public function login() {
-        $template = __DIR__ . "/Views/login.view.php";
-        include($template);
+        $template = __DIR__ . "/Views/login.tpl";
+        
+        $response = new HTMLResponse($template, ["title" => "User Login", "brand" => "Sign-In"]);
+        $response->render();
     }
     
     public function logout() {

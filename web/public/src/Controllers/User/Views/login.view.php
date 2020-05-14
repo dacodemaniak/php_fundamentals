@@ -12,10 +12,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
-		<title>Login</title>
+		<title><?php echo $title; ?></title>
 	</head>
 	
 	<body>
-		<h1>Login works !</h1>
+		<h1><?php echo $brand; ?></h1>
 	</body>
 </html>

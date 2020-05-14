@@ -8,8 +8,6 @@
 
 require_once("vendor/autoload.php");
 
-
-
 // Instanciate a brand new router
 $router = new AltoRouter();
 

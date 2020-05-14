@@ -8,3 +8,6 @@
 .env.dev
 .env.prod
 .env.test
+
+# Smasrty internals
+/var

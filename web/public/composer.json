@@ -3,7 +3,8 @@
 	"type" : "project",
 	"require" : {
 		"vlucas/phpdotenv" : "^4.1",
-		"altorouter/altorouter": "^2.0"
+		"altorouter/altorouter": "^2.0",
+		"smarty/smarty": "^3.1"
 	},
 	"license" : "ISC",
 	"authors" : [{
