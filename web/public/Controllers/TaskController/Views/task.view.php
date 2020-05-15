@@ -22,7 +22,7 @@
 				<?php 
 				for ($indice = 0; $indice < count($datas->modelData); $indice++) {?>
 					<li>
-						<a href="<?php echo "?controller=OneTask&id=" . $indice; ?>" title="Détail">
+						<a href="<?php echo "?controller=Task&method=byId&id=" . $datas->modelData[$indice]["id"]; ?>" title="Détail">
 							<?php echo $datas->modelData[$indice]["libelle"]; ?>
 						</a>
 						<span>Créée le :</span><?php echo $datas->modelData[$indice]["dateCreation"];?>

@@ -13,12 +13,12 @@ class MySQLConnect {
     private $dbName = "php_repo";
     
     public function getConnection(): \PDO {
-        $dsn = "mysql:host=" . $this->dbHost . ";port=" . $this->dbPort . ";dbname=" . $this->dbName; // Data Service Name
+        $dsn = "mysql:host=" . $this->dbHost . ";port=" . $this->dbPort . ";dbname=" . $this->dbName . ";charset=utf8mb4"; // Data Service Name
         // Expected output => mysql:host=127.0.0.1;port=3306;dbname=php_repo
         
         try {
             $pdo = new \PDO($dsn, $this->dbUser, $this->dbPassword);
-            var_dump($pdo);
+            
             return $pdo;
         } catch(\Exception $e) { // Callback
             die("Database connection failed : [" . $e->getCode() . "] : " . $e->getMessage());

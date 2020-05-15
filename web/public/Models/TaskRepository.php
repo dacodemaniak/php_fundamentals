@@ -7,28 +7,14 @@
 */
 
 require_once(__DIR__ . "/../Core/Database/MySQLConnect.php");
+require_once(__DIR__ . "/../Core/String/Converter/CaseConverter.php");
 
 class TaskRepository {
     /**
      * 
      * @var array $repository
      */
-    private $repository = [
-        [
-            "libelle" => "Apprendre PHP",
-            "dateCreation" => "05-05-2020",
-            "dateDebut" => "05-05-2020",
-            "dateFin" => "29-05-2020",
-            "categorie" => "Personnel"
-        ],
-        [
-            "libelle" => "Voir les concepts Objet",
-            "dateCreation" => "05-05-2020",
-            "dateDebut" => "07-05-2020",
-            "dateFin" => "29-05-2020",
-            "categorie" => "Personnel"
-        ]
-    ];
+    private $repository = [];
     
     
     /**
@@ -43,8 +29,17 @@ class TaskRepository {
         $PDOStatement = $pdo->query($requeteSQL); // Resultset
         
         // Boucler sur le résultat
-        while ($row = $PDOStatement->fetch()) {
-            var_dump($row);
+        while ($row = $PDOStatement->fetch(\PDO::FETCH_ASSOC)) {
+            $task = [];
+            foreach ($row as $colName => $value) {
+                $string = new CaseConverter($colName);
+                if ($colName == "date_creation" || $colName == "date_debut" || $colName == "date_fin") {
+                    $date = \DateTime::createFromFormat("Y-m-d", $value);
+                    $value = $date->format("d-m-Y");
+                }
+                $task[$string->toCamelCase()] = $value;
+            }
+            $this->repository[] = $task;
         }
         
         return $this->repository;
