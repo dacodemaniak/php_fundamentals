@@ -7,6 +7,7 @@
  */
 
 require_once("./Core/Controller/Strategies/JSONStrategy.php");
+require_once("./Core/Controller/Strategies/HTMLStrategy.php");
 
 //ini_set("display_errors", true);
 //error_reporting(E_ALL);
@@ -27,6 +28,6 @@ $className = $controllerName . "Controller";
 
 // Instancier la classe (Création de l'objet Contrôleur spécifié)
 $controller = new $className();
-$controller->setStrategy(new JSONStrategy());
+$controller->setStrategy(new HTMLStrategy());
 $controller->render();
 
