@@ -31,3 +31,4 @@ $controller = new $className();
 $controller->setStrategy(new HTMLStrategy());
 $controller->render();
 
+
