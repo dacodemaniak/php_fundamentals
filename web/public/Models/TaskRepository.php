@@ -41,7 +41,6 @@ class TaskRepository {
             }
             $this->repository[] = $task;
         }
-        
         return $this->repository;
     }
     
