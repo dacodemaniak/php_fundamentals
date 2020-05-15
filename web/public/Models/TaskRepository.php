@@ -5,6 +5,9 @@
 * @version 1.0.0
 *   Dépôt des tâches de la base de données
 */
+
+require_once(__DIR__ . "/../Core/Database/MySQLConnect.php");
+
 class TaskRepository {
     /**
      * 
@@ -33,6 +36,17 @@ class TaskRepository {
      * @return array
      */
     public function findAll(): array {
+        $dbConnect = new MySQLConnect();
+        $pdo = $dbConnect->getConnection();
+        
+        $requeteSQL = "SELECT id,libelle,date_creation,date_debut,date_fin,categorie FROM task;";
+        $PDOStatement = $pdo->query($requeteSQL); // Resultset
+        
+        // Boucler sur le résultat
+        while ($row = $PDOStatement->fetch()) {
+            var_dump($row);
+        }
+        
         return $this->repository;
     }
     
