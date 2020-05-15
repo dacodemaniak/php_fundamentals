@@ -33,12 +33,11 @@ class TaskController extends Controller {
     
     public function all() {
         $this->modelData = $this->taskRepository->findAll();
-        echo "TaskController::all()";
     }
     
     public function byId() {
         $this->modelData = $this->taskRepository->findById($_GET["id"]);
-        echo "TaskController::byId()";
+        $this->rootViewName = "onetask";
     }
     
     public function getViewPath(): string {

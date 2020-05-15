@@ -63,7 +63,7 @@ class TaskRepository {
                 }
                 $task[$string->toCamelCase()] = $value;
             }
-            $this->repository[] = $task;
+            $this->repository = $task;
         }
         return $this->repository;
     }

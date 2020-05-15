@@ -17,6 +17,11 @@ abstract class Controller {
      */
     protected $strategy;
     
+    /**
+     * 
+     * @var string
+     */
+    protected $rootViewName = "";
     
     public function __construct() {
         
@@ -33,11 +38,13 @@ abstract class Controller {
     }
     
     public function getViewPath(): string {
-        $className = strtolower(substr(get_class($this), 0, strlen(get_class($this))-10));
+        if ($this->rootViewName == "") {
+            $this->rootViewName = strtolower(substr(get_class($this), 0, strlen(get_class($this))-10));
+        }
         
         $viewType = $this->strategy instanceof HTMLStrategy ? "view" : "json";
         
-        return "/Views/" . $className . "." . $viewType . ".php";
+        return "/Views/" . $this->rootViewName . "." . $viewType . ".php";
     }
     
     abstract public function render();
