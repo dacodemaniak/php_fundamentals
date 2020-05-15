@@ -12,10 +12,16 @@ require_once("./Core/Controller/Strategies/HTMLStrategy.php");
 //ini_set("display_errors", true);
 //error_reporting(E_ALL);
 
-if (array_key_exists("controller", $_GET)) {
-    $controllerName = $_GET["controller"];
+if (!array_key_exists("controller", $_GET)) {
+    $controllerName = "Task";
+    $method = "all"; // Méthode à utiliser par défaut
 } else {
-    $controllerName = "Task"; // Contrôleur par défaut, si rien n'est spécifié dans l'URL
+     $controllerName = $_GET["controller"];
+     if (array_key_exists("method", $_GET)) {
+         $method = $_GET["method"];
+     } else {
+         $method = "all";
+     }
 }
 
 $controllerFileName = "./Controllers/" . $controllerName . "Controller/" . $controllerName . "Controller.php";
@@ -29,6 +35,10 @@ $className = $controllerName . "Controller";
 // Instancier la classe (Création de l'objet Contrôleur spécifié)
 $controller = new $className();
 $controller->setStrategy(new HTMLStrategy());
+
+// Appeler la méthode concernée dans le contrôleur
+$controller->{$method}();
+
 $controller->render();
 
 

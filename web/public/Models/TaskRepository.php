@@ -45,6 +45,26 @@ class TaskRepository {
     }
     
     public function findById(int $id): array {
-        return $this->repository[$id];
+        $dbConnect = new MySQLConnect();
+        $pdo = $dbConnect->getConnection();
+        
+        $requeteSQL = "SELECT id,libelle,date_creation,date_debut,date_fin,categorie FROM task WHERE id=" . $id . ";";
+        
+        $PDOStatement = $pdo->query($requeteSQL); // Resultset
+        
+        // Boucler sur le résultat
+        while ($row = $PDOStatement->fetch(\PDO::FETCH_ASSOC)) {
+            $task = [];
+            foreach ($row as $colName => $value) {
+                $string = new CaseConverter($colName);
+                if ($colName == "date_creation" || $colName == "date_debut" || $colName == "date_fin") {
+                    $date = \DateTime::createFromFormat("Y-m-d", $value);
+                    $value = $date->format("d-m-Y");
+                }
+                $task[$string->toCamelCase()] = $value;
+            }
+            $this->repository[] = $task;
+        }
+        return $this->repository;
     }
 }

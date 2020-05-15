@@ -16,15 +16,30 @@ require_once(__DIR__ . "/../../Core/Controller/Controller.php");
 
 class TaskController extends Controller {
     
+    /**
+     * 
+     * @var TaskRepository
+     */
+    private $taskRepository = null;
+    
     public function __construct() { // PHP Magic Method __
         parent::__construct(); // Explicitement appeler le constructeur de la classe parente
         
-        $taskRepository = new TaskRepository();
+        $this->taskRepository = new TaskRepository(); // Injection de Dépendances (DI)
         
-        $this->modelData = $taskRepository->findAll();
+        
         
     }
     
+    public function all() {
+        $this->modelData = $this->taskRepository->findAll();
+        echo "TaskController::all()";
+    }
+    
+    public function byId() {
+        $this->modelData = $this->taskRepository->findById($_GET["id"]);
+        echo "TaskController::byId()";
+    }
     
     public function getViewPath(): string {
         return __DIR__ . parent::getViewPath();    
