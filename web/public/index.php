@@ -16,12 +16,12 @@ if (!array_key_exists("controller", $_GET)) {
     $controllerName = "Task";
     $method = "all"; // Méthode à utiliser par défaut
 } else {
-     $controllerName = $_GET["controller"];
-     if (array_key_exists("method", $_GET)) {
-         $method = $_GET["method"];
-     } else {
-         $method = "all";
-     }
+    $controllerName = $_GET["controller"];
+    if (array_key_exists("method", $_GET)) {
+        $method = $_GET["method"];
+    } else {
+        $method = "all";
+    }
 }
 
 $controllerFileName = "./Controllers/" . $controllerName . "Controller/" . $controllerName . "Controller.php";

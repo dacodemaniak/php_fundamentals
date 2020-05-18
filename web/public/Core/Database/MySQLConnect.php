@@ -6,7 +6,7 @@
 *   Etablit une connexion PDO vers un serveur MySQL
 */
 class MySQLConnect {
-    private $dbHost = "172.21.0.2"; // Adresse du serveur de base de données
+    private $dbHost = "172.29.0.4"; // Adresse du serveur de base de données
     private $dbPort = 3306; // Port par défaut de MySQL Server
     private $dbUser = "root";
     private $dbPassword = "root";
