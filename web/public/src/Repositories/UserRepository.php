@@ -58,12 +58,8 @@ class UserRepository {
         // Préparer la requête... et l'envoyer au serveur
         // Instancier la classe MySQL
         
-        $db = new MySQL();
-        $db
-            ->setDbName("test")
-            ->setUsername("root")
-            ->setPassword("root")
-            ->setHost("172.21.0.4");
+        $db = new Adrar\Core\DBAL\MySQL();
+
         // Try to connect
         $db->connect();
             
