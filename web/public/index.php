@@ -31,6 +31,13 @@ $router->map(
     "user_register" // P'tit nom de la route
     );
 
+$router->map(
+    "POST",
+    "/user/register",
+    "\\Adrar\\Controllers\\User\\UserController#processRegister",
+    "process_register"
+);
+
 $match = $router->match();
 
 if ($match) {

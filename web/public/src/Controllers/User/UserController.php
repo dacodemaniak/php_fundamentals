@@ -10,6 +10,7 @@ namespace Adrar\Controllers\User;
 
 
 use Adrar\Core\Http\HTMLResponse;
+use Adrar\Entities\User;
 
 class UserController {
 
@@ -29,8 +30,19 @@ class UserController {
     }
     
     public function register() {
-        $template = __DIR__ . "/Views/register.view.php";
-        include($template);
+        $template = __DIR__ . "/Views/register.tpl";
+        $response = new HTMLResponse($template, ["title" => "Formulaire d'inscription"]);
+        $response->render();
+    }
+    
+    public function processRegister() {
+        $user = new User(); // Crée un objet $user de type Adrar\Entities\User
+        
+        $user->hydrate();
+        
+        echo $user;
+        
+        
     }
 }
 

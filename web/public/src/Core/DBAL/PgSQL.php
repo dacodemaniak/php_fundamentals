@@ -5,7 +5,7 @@
  * @version 1.0.0
  *  Concrete MySQL Connection Class
  */
-require_once(__DIR__ . "/DbConnect.php");
+use Adrar\Core\DBAL\DbConnect;
 
 final class PgSQL extends DbConnect {
 

@@ -5,6 +5,8 @@
  * @version 1.0.0
  *  User entitie related to "user" table in the database
  */
+namespace Adrar\Entities;
+
 class User {
     /**
      * 
@@ -148,6 +150,27 @@ class User {
     public function setPassword(string $password): User {
         $this->password = $password;
         return $this;
+    }
+    
+    /**
+     * Remplit automatiquement les attributs de l'objet à partir des données postées
+     */
+    public function hydrate() {
+        foreach ($_POST as $key => $value) {
+            $this->{$key} = $value;
+        }
+    }
+    
+    /**
+     * Retourne une chaîne lors de l'utilisation de echo $user
+     * @return string
+     */
+    public function __toString(): string {
+        $output = "";
+        foreach ($this as $property => $value) {
+            $output .= "<p>" . $property . " : " . $value . "</p>";
+        }
+        return $output;
     }
     
     /**
