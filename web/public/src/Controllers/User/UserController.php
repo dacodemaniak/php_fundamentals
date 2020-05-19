@@ -11,11 +11,19 @@ namespace Adrar\Controllers\User;
 
 use Adrar\Core\Http\HTMLResponse;
 use Adrar\Entities\User;
+use Adrar\Repositories\UserRepository;
 
 class UserController {
 
+    /**
+     * Instance de la classe UserRepository
+     * @var UserRepository
+     */
+    private $repository;
     
-    public function __construct() {}
+    public function __construct() {
+        $this->repository = new UserRepository();
+    }
     
     public function login() {
         $template = __DIR__ . "/Views/login.tpl";
@@ -40,8 +48,7 @@ class UserController {
         
         $user->hydrate();
         
-        echo $user;
-        
+        $this->repository->persist($user);
         
     }
 }

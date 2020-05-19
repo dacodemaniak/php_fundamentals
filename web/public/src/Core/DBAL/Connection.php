@@ -27,8 +27,6 @@ class Connection {
         // Try to instanciate dynamcally a MySQL or PgSQL connection
         if ($driver === "MySQL") {
             $this->instance = new MySQL();
-        } else {
-            $this->instance = new PgSQL();
         }
     }
     
