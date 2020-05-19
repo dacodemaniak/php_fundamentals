@@ -32,6 +32,14 @@ class UserController {
         $response->render();
     }
     
+    public function processLogin() {
+        $user = new User(); // Crée un objet $user de type Adrar\Entities\User
+        
+        $user->hydrate();
+        
+        echo "Bievenue " . $user->getUsername();
+    }
+    
     public function logout() {
         $template = __DIR__ . "/Views/logout.view.php";
         include($template);

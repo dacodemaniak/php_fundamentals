@@ -19,6 +19,13 @@ $router->map(
     "user_login" // P'tit nom de la route
 );
 $router->map(
+    "POST",
+    "/user/login",
+    "\\Adrar\\Controllers\\User\\UserController#processLogin",
+    "process_login"
+);
+
+$router->map(
     "GET", // HTTP Verb,
     "/user/logout", // Route
     "\\Adrar\\Controllers\\User\\UserController#logout", // Contrôleur et une méthode
