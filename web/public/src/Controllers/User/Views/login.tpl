@@ -14,6 +14,11 @@
 	
 	<body>
 		<div class="container-fluid">
+			{if $error}
+				<div class="alert alert-danger">
+					{$error}
+				</div>
+			{/if}
 			<form method="post" action="/user/login">
 				<div class="form-group">
 					<input type="text" name="username" id="username" placeholder="Votre nom d'utilisateur...">

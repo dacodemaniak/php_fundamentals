@@ -27,7 +27,7 @@ class UserRepository implements IRepository {
         
     }
     
-    public function findByUsernameAndPassword(User $user) {
+    public function findByUsernameAndPassword(User $user): ?User {
         // SELECT id, firstname, lastname, lastname, email FROM user WHERE username = 'jlaubert' AND password = 'jlaubert';
         $sqlQuery = "SELECT id, firstname, lastname, email FROM user WHERE username = :username AND password = :password;";
         
@@ -49,9 +49,15 @@ class UserRepository implements IRepository {
             $row = $statement->fetch(\PDO::FETCH_ASSOC);
             // Récupérer les données venant de la base de données
             if ($row == true) {
-                var_dump($row);
+                // Finaliser l'objet User
+                $user->setId($row["id"]);
+                $user->setFirstname($row["firstname"]);
+                $user->setLastname($row["lastname"]);
+                $user->setEmail($row["email"]);
+                // @todo Créer un DTO pour ne retourner que les données acceptables de user
+                return $user;
             } else {
-                echo "Il n'y a aucun utilisateur correspondant aux informations fournies";
+                return null;
             }
         }
     }

@@ -28,7 +28,7 @@ class UserController {
     public function login() {
         $template = __DIR__ . "/Views/login.tpl";
         
-        $response = new HTMLResponse($template, ["title" => "User Login", "brand" => "Sign-In"]);
+        $response = new HTMLResponse($template, ["title" => "User Login", "error" => false]);
         $response->render();
     }
     
@@ -38,7 +38,19 @@ class UserController {
         $user->hydrate();
         
         // Envoyer l'objet User vers UserRepository
-        $this->repository->findByUsernameAndPassword($user);
+        $user = $this->repository->findByUsernameAndPassword($user);
+        
+        if ($user) {
+            // @todo Créer un objet HTMLResponse avec le template "home"
+            // @todo Stocker l'utilisateur dans une variable de session
+            echo "Full user: <br>" . $user;
+        } else {
+            // @todo Retourner la page de login si échec, avec un message
+            $template = __DIR__ . "/Views/login.tpl";
+            
+            $response = new HTMLResponse($template, ["title" => "User Login", "error" => "Authentication failed"]);
+            $response->render();
+        }
     }
     
     public function logout() {
