@@ -25,6 +25,13 @@ class UserController {
         $this->repository = new UserRepository();
     }
     
+    public function getTestOnly(string $attributName) {
+        if (property_exists($this, $attributName)) {
+            return $this->{$attributName};
+        }
+        return null;
+    }
+    
     public function login() {
         $template = __DIR__ . "/Views/login.tpl";
         
