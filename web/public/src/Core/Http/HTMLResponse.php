@@ -30,7 +30,7 @@ class HTMLResponse {
     
     public function render() {
         header("Content-Type: text/html"); // En-tête HTTP 
-        echo "Display template " . $this->template;
+        
         $this->processedTemplate->display();
     }
     

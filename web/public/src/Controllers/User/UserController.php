@@ -37,7 +37,7 @@ class UserController {
         
         $user->hydrate();
         
-        echo "Bievenue " . $user->getUsername();
+        echo $user;
     }
     
     public function logout() {

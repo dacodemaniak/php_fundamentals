@@ -17,16 +17,18 @@ class Connection {
     private $instance;
     
     private function __construct() {
-        echo "Constructeur privé de Connexion<br>";
         
         $dotenv = Dotenv::createImmutable(__DIR__ . "/../../../");
         $dotenv->load();
+        
         
         $driver = $_ENV["DB_DRIVER"];
         
         // Try to instanciate dynamcally a MySQL or PgSQL connection
         if ($driver === "MySQL") {
             $this->instance = new MySQL();
+        } else {
+            die("DB_DRIVER is missing in your environement definition file!");
         }
     }
     
