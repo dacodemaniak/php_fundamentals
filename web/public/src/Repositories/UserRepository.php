@@ -27,6 +27,35 @@ class UserRepository implements IRepository {
         
     }
     
+    public function findByUsernameAndPassword(User $user) {
+        // SELECT id, firstname, lastname, lastname, email FROM user WHERE username = 'jlaubert' AND password = 'jlaubert';
+        $sqlQuery = "SELECT id, firstname, lastname, email FROM user WHERE username = :username AND password = :password;";
+        
+        // Récupération de l'instance de connexion à la base de données
+        $db = Connection::getInstance()->getHandler();
+        
+        $statement = $db->prepare($sqlQuery);
+        
+        $resultSet = $statement->execute(
+            [
+                "username" => $user->getUsername(),
+                "password" => $user->getPassword()
+            ]
+        );
+        
+        if (!$resultSet) {
+            var_dump($db->errorInfo());
+        } else {
+            $row = $statement->fetch(\PDO::FETCH_ASSOC);
+            // Récupérer les données venant de la base de données
+            if ($row == true) {
+                var_dump($row);
+            } else {
+                echo "Il n'y a aucun utilisateur correspondant aux informations fournies";
+            }
+        }
+    }
+    
     public function persist($model) {
         
         $this->model = $model;
@@ -34,7 +63,6 @@ class UserRepository implements IRepository {
     }
     
     private function create() {
-        echo $this->model;
         
         $sqlQuery = "INSERT INTO user (id, firstname, lastname, email, username, password) VALUES (?,?,?,?,?,?);";
         

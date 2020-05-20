@@ -23,7 +23,7 @@ final class MySQL extends DbConnect {
     
     protected function connect() {
         $dsn = $this->dbType . ":host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->dbName;
-        echo $dsn;
+        
         try {
             $this->handler = new \PDO($dsn, $this->username, $this->password);
         } catch(\PDOException $e) {

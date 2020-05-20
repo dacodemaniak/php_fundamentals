@@ -37,7 +37,8 @@ class UserController {
         
         $user->hydrate();
         
-        echo $user;
+        // Envoyer l'objet User vers UserRepository
+        $this->repository->findByUsernameAndPassword($user);
     }
     
     public function logout() {
